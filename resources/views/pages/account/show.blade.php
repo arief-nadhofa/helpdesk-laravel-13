@@ -8,7 +8,10 @@
             <div class="breadcrumbs text-sm float-end">
                 <ul>
                     <li>
-                        <span class="badge bg-gray-300 ">Ticket</span>
+                        <span class="badge bg-gray-300 ">Master Data</span>
+                    </li>
+                    <li>
+                        <span class="badge bg-gray-300 ">Account</span>
                     </li>
                     <li>
                         <span class="badge bg-blue-400 text-white">List</span>
@@ -40,9 +43,9 @@
     <div class="grid mt-5">
         <div class="overflow-x-auto bg-base-100 p-5 rounded-box shadow-sm">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold">Data Ticket</h2>
+                <h2 class="text-xl font-bold">Data Account</h2>
                 <button class="btn btn-primary btn-sm">
-                    <a href="{{ route('ticket.create') }}">
+                    <a href="{{ route('account.create') }}">
                         <i class="fa-solid fa-plus"></i> Tambah Data
                     </a>
                 </button>
@@ -53,46 +56,31 @@
                 <thead>
                     <tr class="text-base-content">
                         <th>No.</th>
-                        <th>No. Ticket</th>
-                        <th>Category</th>
-                        <th>Request From</th>
-                        <th>Status</th>
+                        <th>ID Number</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>LDAP</th>
+                        <th>Role</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($ticket as $t)
-
-                    <tr class="hover">
+                    @foreach($account as $a)
+                    <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $a['id_number'] }}</td>
+                        <td>{{ $a['username'] }}</td>
+                        <td>{{ $a['name'] }}</td>
+                        <td>{{ $a['ldap'] }}</td>
                         <td>
-
-                            <div class="flex items-center gap-3">
-                                <div>
-                                    <div class="font-bold">{{ $t['ticket_number'] }}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            {{ $t['category_id'] }}
-                        </td>
-                        <td>
-                            {{ $t['user_request'] }}
-                        </td>
-                        <td>
-                            @if($t['status']==0)
-                            <span class="badge badge-success gap-2 text-white">
-                                Open
-                            </span>
+                            @if($a['role']==0)
+                            <span class="badge bg-blue-500 text-white">User</span>
                             @else
-                            <span class="badge badge-error gap-2 text-white">
-                                Close
-                            </span>
+                            <span class="badge bg-blue-500 text-white">Admin</span>
                             @endif
                         </td>
-                        <td class="text-center">
-
-                            <form action="{{ route('ticket.destroy', $t['id']) }}"
+                        <td>
+                            <form action="{{ route('account.destroy', $a['id']) }}"
                                 method="POST"
                                 class="delete-form flex items-center gap-2" onsubmit="return confirm('Apakah Anda yakin ingin menghapus tiket?')">
                                 <a href="#" class="btn bg-yellow-400 text-white">
@@ -109,7 +97,7 @@
                         </td>
                     </tr>
                     @endforeach
-                    <!-- row 1 -->
+
 
 
                 </tbody>

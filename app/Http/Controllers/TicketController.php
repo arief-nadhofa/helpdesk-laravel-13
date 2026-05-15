@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('pages.ticket.create');
+        $account = Account::all();
+        return view('pages.ticket.create', compact('account'));
     }
 
     /**

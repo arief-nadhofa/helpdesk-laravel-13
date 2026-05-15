@@ -45,6 +45,10 @@
                     <div class="col-span-3">
                         <legend class="fieldset-legend">User Request</legend>
                         <select class="select2-laravel w-full" name="user_request_id">
+                            <option value="">Choose User</option>
+                            @foreach($account as $a)
+                            <option value="{{ $a['id_number'] }}">{{ $a['id_number'] }} - {{ $a['name'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-span-3">
