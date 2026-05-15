@@ -35,7 +35,7 @@
                 <fieldset class="fieldset grid grid-cols-12 gap-4">
                     <div class="col-span-3">
                         <legend class="fieldset-legend">ID Number</legend>
-                        <input type="text" class="input w-full" required name="id_number" placeholder="Type here..." />
+                        <input type="text" class="input w-full" required name="id_number" placeholder="Type here..." autofocus />
                     </div>
                     <div class="col-span-3">
                         <legend class="fieldset-legend">Full Name</legend>

@@ -19,4 +19,10 @@ class Ticket extends Model
         'status',
         'created_at'
     ];
+
+    public function account()
+    {
+        // Ticket belongs to Account
+        return $this->belongsTo(Account::class, 'user_request', 'id_number');
+    }
 }

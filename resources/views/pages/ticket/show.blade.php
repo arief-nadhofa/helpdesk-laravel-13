@@ -57,6 +57,7 @@
                         <th>Category</th>
                         <th>Request From</th>
                         <th>Status</th>
+                        <th>Created At</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -77,7 +78,7 @@
                             {{ $t['category_id'] }}
                         </td>
                         <td>
-                            {{ $t['user_request'] }}
+                            {{ $t['user_request'] }} - {{ $t->account->name }}
                         </td>
                         <td>
                             @if($t['status']==0)
@@ -90,6 +91,7 @@
                             </span>
                             @endif
                         </td>
+                        <td>{{ $t['created_at'] }}</td>
                         <td class="text-center">
 
                             <form action="{{ route('ticket.destroy', $t['id']) }}"

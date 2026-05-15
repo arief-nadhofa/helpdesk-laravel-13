@@ -15,7 +15,10 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $ticket = Ticket::all();
+        $ticket = Ticket::with('account')
+            ->orderBy('created_at', 'DESC')
+            ->orderBy('status', 'ASC')
+            ->get();
         return view('pages.ticket.show', compact('ticket'));
     }
 
@@ -35,8 +38,7 @@ class TicketController extends Controller
     {
         $ticket_number = $request->ticket_number;
         $date = $request->date;
-        $user_request_id = "1225";
-        // $user_request_id = $request->user_request_id;
+        $user_request_id = $request->user_request_id;
         // $category_id = $request->category_id;
         $category_id = 1;
         $problem_description = $request->problem_description;

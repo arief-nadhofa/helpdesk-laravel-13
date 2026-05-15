@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-span-3">
                         <legend class="fieldset-legend">Date</legend>
-                        <input type="date" class="input w-full" required name="date" />
+                        <input type="date" class="input w-full" required name="date" autofocus />
                     </div>
                     <div class="col-span-3">
                         <legend class="fieldset-legend">User Request</legend>
