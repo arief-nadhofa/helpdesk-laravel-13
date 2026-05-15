@@ -3,25 +3,49 @@
 <!-- Area Konten Utama -->
 <main class="p-8 bg-base-200 min-h-screen">
 
-    <div class="grid grid-cols-12 gap-4 text-center">
-        <div class="col-span-6">
-            <div class="stat bg-blue-300 rounded-lg text-white">
-                <div class="stat-title text-xl text-white">Ticket (Update: Today)</div>
-                <div class="stat-value">89,400</div>
-            </div>
-        </div>
-        <div class="col-span-6">
-            <div class="stat bg-red-300 rounded-xl text-white">
-                <div class="stat-title text-xl text-white">Asset</div>
-                <div class="stat-value">89,400</div>
+    <div class="grid grid-cols-12 ">
+        <div class="col-span-12">
+            <div class="breadcrumbs text-sm float-end">
+                <ul>
+                    <li>
+                        <span class="badge bg-gray-300 ">Ticket</span>
+                    </li>
+                    <li>
+                        <span class="badge bg-blue-400 text-white">List</span>
+                    </li>
+
+                </ul>
             </div>
         </div>
     </div>
 
+    @if(session('success'))
+    <div class="toast toast-top toast-end">
+        <div class="alert alert-success text-white">
+            <span>{{ session('success') }}</span>
+        </div>
+    </div>
+    <script>
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.transition = "opacity 0.5s ease";
+                alert.style.opacity = "0";
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 3000); // Hilang dalam 3 detik
+    </script>
+    @endif
+
     <div class="grid mt-5">
         <div class="overflow-x-auto bg-base-100 p-5 rounded-box shadow-sm">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold">Outstanding Ticket</h2>
+                <h2 class="text-xl font-bold">Data Ticket</h2>
+                <button class="btn btn-primary btn-sm">
+                    <a href="{{ route('ticket.create') }}">
+                        <i class="fa-solid fa-plus"></i> Tambah Data
+                    </a>
+                </button>
             </div>
 
             <table class="table table-zebra w-full">
@@ -33,6 +57,7 @@
                         <th>Category</th>
                         <th>Request From</th>
                         <th>Status</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,6 +110,7 @@
                     </tr>
                     @endforeach
                     <!-- row 1 -->
+
 
                 </tbody>
             </table>

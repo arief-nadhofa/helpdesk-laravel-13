@@ -17,19 +17,19 @@
 
             <!-- Menu Items -->
             <li>
-                <a href="/dashboard" class="flex gap-3 {{ request()->is('dashboard') ? 'active' : '' }}">
+                <a href="/dashboard" class="flex gap-3 {{ request()->is('dashboard') ? 'active' : '' }} text-lg">
                     <span class="fas fa-home"></span>
                     Dashboard
                 </a>
             </li>
             <li>
-                <a href="/users" class="flex gap-3">
-                    <span class="fas fa-file"></span>
+                <a href="{{ route('ticket.index') }}" class="flex gap-3 text-lg">
+                    <span class="fas fa-list-check"></span>
                     Ticket
                 </a>
             </li>
             <li>
-                <details>
+                <details class="text-lg">
                     <summary>
                         <i class="fa-solid fa-dashboard w-5"></i>
                         Master Data
@@ -41,7 +41,7 @@
                 </details>
             </li>
             <li>
-                <details>
+                <details class="text-lg">
                     <summary>
                         <i class="fa-solid fa-file-invoice w-5"></i>
                         Laporan
@@ -53,7 +53,7 @@
                 </details>
             </li>
             <li>
-                <a href="/settings" class="flex gap-3">
+                <a href="/settings" class="flex gap-3 text-lg">
                     <span class="fas fa-gear"></span>
                     Pengaturan
                 </a>
@@ -63,16 +63,18 @@
             <div class="divider"></div>
 
             <!-- Logout Button -->
-            <li>
-                <form action="{{ route('proses-logout') }}" method="POST" class="p-0">
-                    @csrf
-                    <button type="submit" class="flex gap-3 text-error w-full p-3 hover:bg-error/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        Logout
-                    </button>
-                </form>
+            <li class="text-lg">
+                <div class="grid">
+                    <div class="col-span-12 w-full ">
+                        <form action="{{ route('proses-logout') }}" method="POST" class="p-0">
+                            @csrf
+                            <button type="submit" class="bg-red-400 justify-center flex gap-3 text-white h-10 w-full p-1  rounded-lg ">
+                                Logout
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

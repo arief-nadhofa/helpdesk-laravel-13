@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -12,3 +13,5 @@ Route::get('dashboard', [LayoutController::class, 'dashboard'])->name('dashboard
 
 Route::post('proses-login', [LayoutController::class, 'proses_login'])->name('proses-login');
 Route::post('proses-logout', [LayoutController::class, 'proses_logout'])->name('proses-logout');
+
+Route::resource('ticket', TicketController::class);
