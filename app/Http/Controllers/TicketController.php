@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Category;
 use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class TicketController extends Controller
     public function create()
     {
         $account = Account::all();
-        return view('pages.ticket.create', compact('account'));
+        $category = Category::all();
+        return view('pages.ticket.create', compact(['account', 'category']));
     }
 
     /**
@@ -39,8 +41,7 @@ class TicketController extends Controller
         $ticket_number = $request->ticket_number;
         $date = $request->date;
         $user_request_id = $request->user_request_id;
-        // $category_id = $request->category_id;
-        $category_id = 1;
+        $category_id = $request->category_id;
         $problem_description = $request->problem_description;
 
         Ticket::create([

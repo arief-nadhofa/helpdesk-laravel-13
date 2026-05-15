@@ -36,6 +36,7 @@
                     </summary>
                     <ul>
                         <li><a href="{{ route('account.index') }}">Akun</a></li>
+                        <li><a href="{{ route('category.index') }}">Category</a></li>
                         <li><a href="/laporan/bulanan">Aset</a></li>
                     </ul>
                 </details>

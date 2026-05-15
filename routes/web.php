@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,4 @@ Route::post('proses-logout', [LayoutController::class, 'proses_logout'])->name('
 
 Route::resource('ticket', TicketController::class);
 Route::resource('account', AccountController::class);
+Route::resource('category', CategoryController::class);

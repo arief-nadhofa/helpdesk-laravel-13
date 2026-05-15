@@ -53,13 +53,11 @@
                     </div>
                     <div class="col-span-3">
                         <legend class="fieldset-legend">Category</legend>
-                        <select class="select" name="category_id">
-                            <option disabled selected>Select Category</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="computer">Computer</option>
-                            <option value="system">System</option>
-                            <option value="network">Network</option>
-                            <option value="vpn">VPN</option>
+                        <select class="select2-laravel w-full" name="category_id">
+                            <option value="">Choose User</option>
+                            @foreach($category as $c)
+                            <option value="{{ $c['id'] }}">{{ $c['description'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-span-12">

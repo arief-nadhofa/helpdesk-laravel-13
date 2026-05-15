@@ -10,7 +10,7 @@
     <script>
         $(document).ready(function() {
             $('.select2-laravel').select2({
-                placeholder: "Cari nama user...",
+                placeholder: "Search...",
                 allowClear: true,
                 width: '100%' // Pastikan mengambil lebar penuh kontainer Tailwind
             });
