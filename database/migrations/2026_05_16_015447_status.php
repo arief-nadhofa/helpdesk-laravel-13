@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account', function (Blueprint $table) {
+        Schema::create('ticket_status', function (Blueprint $table) {
             $table->id()->primary()->serialize();
-            $table->string('username');
-            $table->string('password');
-            $table->string('id_number');
-            $table->string('name');
-            $table->integer('role')->default(0);
-            $table->string('ldap');
-            $table->string('phone');
-            $table->dateTime('created_at');
+            $table->string('description');
         });
     }
 

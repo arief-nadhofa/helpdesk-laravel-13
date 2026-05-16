@@ -36,7 +36,7 @@
                     <div class="col-span-3">
                         <legend class="fieldset-legend">Ticket No.</legend>
 
-                        <input type="text" name="ticket_number" class="input w-full" placeholder="Type here" readonly />
+                        <input type="text" name="ticket_number" class="input w-full" value="{{ $ticketNumber }}" readonly />
                     </div>
                     <div class="col-span-3">
                         <legend class="fieldset-legend">Date</legend>

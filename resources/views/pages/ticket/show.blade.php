@@ -36,6 +36,23 @@
         }, 3000); // Hilang dalam 3 detik
     </script>
     @endif
+    @if(session('error'))
+    <div class="toast toast-top toast-end">
+        <div class="alert alert-error text-white">
+            <span>{{ session('error') }}</span>
+        </div>
+    </div>
+    <script>
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.transition = "opacity 0.5s ease";
+                alert.style.opacity = "0";
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 3000); // Hilang dalam 3 detik
+    </script>
+    @endif
 
     <div class="grid mt-5">
         <div class="overflow-x-auto bg-base-100 p-5 rounded-box shadow-sm">
@@ -57,17 +74,16 @@
                         <th>Category</th>
                         <th>Request From</th>
                         <th>Status</th>
+                        <th>Date</th>
                         <th>Created At</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($ticket as $t)
-
                     <tr class="hover">
                         <td>{{ $loop->iteration }}</td>
                         <td>
-
                             <div class="flex items-center gap-3">
                                 <div>
                                     <div class="font-bold">{{ $t['ticket_number'] }}</div>
@@ -75,29 +91,38 @@
                             </div>
                         </td>
                         <td>
-                            {{ $t['category_id'] }}
+                            {{ $t['category_id']? $t->category->description:'-' }}
                         </td>
                         <td>
                             {{ $t['user_request'] }} - {{ $t->account->name }}
                         </td>
                         <td>
-                            @if($t['status']==0)
-                            <span class="badge badge-success gap-2 text-white">
+                            @if($t['status'] == 1)
+                            <span class="badge badge-error gap-2 text-white">
                                 Open
                             </span>
+                            @elseif($t['status'] == 2)
+                            <span class="badge badge-warning gap-2 text-white">
+                                Assign
+                            </span>
+                            @elseif($t['status'] == 3)
+                            <span class="badge badge-info gap-2 text-white">
+                                On Progress
+                            </span>
                             @else
-                            <span class="badge badge-error gap-2 text-white">
+                            <span class="badge badge-success gap-2 text-white">
                                 Close
                             </span>
                             @endif
                         </td>
-                        <td>{{ $t['created_at'] }}</td>
+                        <td>{{ date('d M Y',strtotime($t['date'])) }}</td>
+                        <td>{{ date('d M Y H:i:s',strtotime($t['created_at'])) }}</td>
                         <td class="text-center">
 
                             <form action="{{ route('ticket.destroy', $t['id']) }}"
                                 method="POST"
                                 class="delete-form flex items-center gap-2" onsubmit="return confirm('Apakah Anda yakin ingin menghapus tiket?')">
-                                <a href="#" class="btn bg-yellow-400 text-white">
+                                <a href="{{ route('ticket.edit',$t['id']) }}" class="btn bg-yellow-400 text-white">
                                     <span class="fa-solid fa-pen-to-square"></span>
                                 </a>
 

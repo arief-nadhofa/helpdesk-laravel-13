@@ -17,6 +17,7 @@ class Ticket extends Model
         'user_request',
         'problem_description',
         'status',
+        'note',
         'created_at'
     ];
 
@@ -24,5 +25,17 @@ class Ticket extends Model
     {
         // Ticket belongs to Account
         return $this->belongsTo(Account::class, 'user_request', 'id_number');
+    }
+
+    public function category()
+    {
+        // Ticket belongs to Account
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function status()
+    {
+        // Ticket belongs to Account
+        return $this->belongsTo(Status::class, 'status', 'id');
     }
 }
